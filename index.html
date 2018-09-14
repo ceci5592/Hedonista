@@ -7,13 +7,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hedonista</title>
 
-    <style></style>
+    <style>
+        html {
+            margin: 0 auto;
+        }
+
+        body {
+            text-align: center;
+        }
+
+
+        h1 {
+            text-transform: uppercase;
+            font-family: walkway ultrabold;
+            font-size: 50px;
+        }
+
+        h2 {
+            text-transform: uppercase;
+            font-family: walkway ultrabold;
+            font-size: 30px;
+            color: #f05c71;
+        }
+
+        p {
+            font-family: walkway semibold;
+            font-size: 15px;
+        }
+
+        nav {
+            padding-bottom: 30px;
+        }
+
+        .logo {
+            width: 100vw;
+            padding-top: 15px;
+        }
+
+        .videre {
+            width: 35px;
+            height: 35px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .videre img {
+            width: 28px;
+            height: 28px;
+            margin-left: -4.5px;
+            margin-top: 1.5px;
+        }
+
+        .retContainer {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        @media only screen and (max-width: 1229px) {
+            .retContainer {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media only screen and (max-width: 830px) {
+            .ret img {
+                width: 100%
+            }
+
+            .retContainer {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media only screen and (max-width: 425px) {
+            .ret img {
+                width: 100%
+            }
+
+            .retContainer {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        ;
+
+    </style>
 
 </head>
 
 <body>
+
+    <img class="logo" src="Logo/Logo%20-%20endeligt.svg" alt="logo">
+
+    <button class="videre"><img src="images/arrow-down-empty-circle_500x500.png"><a href="index.html#forside"></a>
+    </button>
+
     <header>
-        <h1>Menu</h1>
+        <h1 id="forside">Menu</h1>
         <nav>
             <button class="menu-item" data-kategori="tacos">Tacos</button>
             <button class="menu-item" data-kategori="quesadillas">Quesadillas</button>
@@ -21,6 +111,7 @@
             <button class="menu-item" data-kategori="drinks">Drikkevarer</button>
         </nav>
     </header>
+
 </body>
 
 <main class="retContainer"></main>
@@ -30,13 +121,17 @@
         <h2 class="overskrift" data-navn></h2>
         <img class="billede" data-billede src="" alt="">
         <p class="beskrivelse" data-beskrivelse></p>
-        <p>Pris: <span class="pris" data-pris></span>kr.</p>
+        <p>Pris: <span class="pris" data-pris></span> kr.</p>
     </article>
 </template>
 
 <script>
     let dest = document.querySelector(".retContainer"),
         retter, menuFilter = "alle";
+
+
+
+
     document.addEventListener("DOMContentLoaded", hentJson);
 
     async function hentJson() {
@@ -67,7 +162,7 @@
 
                 klon.querySelector("[data-navn]").textContent = ret.navn;
 
-                klon.querySelector("[data-billede]").src = "images/small/" + ret.billede + "";
+                klon.querySelector("[data-billede]").src = "images/small/" + ret.billede + ".jpg";
 
                 klon.querySelector("[data-billede]").addEventListener("click", () => {
                     window.location.href = "single.html?id=" + ret.id;
@@ -81,3 +176,18 @@
     }
 
 </script>
+
+<footer>
+    <div class="grid">
+        <div class="item item-a">
+            <h4>Adresse:</h4>
+            <p>Slagterboderne 8<br>
+                1716 København V</p>
+        </div>
+        <div class="item item-b">
+            <h4>Åbningstider:</h4>
+            <p>Søndag - torsdag: 11:00 - 20:00<br>
+                Fredag - lørdag: 11:00 - 22:00</p>
+        </div>
+    </div>
+</footer>

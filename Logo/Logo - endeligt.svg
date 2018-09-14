@@ -1,0 +1,51 @@
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" width="723.15" height="320.32" viewBox="0 0 723.15 320.32">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #85a740;
+      }
+
+      .cls-2 {
+        fill: #f2b276;
+      }
+
+      .cls-3 {
+        fill: #7ad6c9;
+      }
+
+      .cls-4 {
+        fill: #ff5970;
+      }
+
+      .cls-5 {
+        font-size: 130px;
+        font-family: WalkwaySemiBold, Walkway SemiBold;
+      }
+    </style>
+  </defs>
+  <title>Logo - endeligt</title>
+  <g>
+    <g>
+      <path class="cls-1" d="M461.39,64.64s-.6-20.57,12.1-20.57S485,64.64,485,64.64V308.5h-23.6Z" transform="translate(-13.85 -12)"/>
+      <path class="cls-1" d="M485,176.53s40.54,9.13,38.73-154.24c0,0-1.21-10.29,7.86-10.29s7.87,9.68,7.87,9.68V68.27S537.7,192.86,485,192" transform="translate(-13.85 -12)"/>
+      <path class="cls-1" d="M461.39,129.61s-29,9.46-28.44-88c0,0,1.82-10.89-7.87-10.89S416,40.44,416,40.44s-8.47,100.88,45.38,105.2" transform="translate(-13.85 -12)"/>
+    </g>
+    <g>
+      <path class="cls-2" d="M444.43,54.81,505.52,71.1s-2.77,10-8.1,8.62L445.36,65.84S441.67,64.85,444.43,54.81Z" transform="translate(-13.85 -12)"/>
+      <g>
+        <path class="cls-2" d="M492.24,71,491.4,41.3s.59-7.57-6.72-9.52L473.77,66.29Z" transform="translate(-13.85 -12)"/>
+        <path class="cls-2" d="M455.68,61.27l18.21-24.64s4-6.67,11.27-4.72L474,66.36Z" transform="translate(-13.85 -12)"/>
+      </g>
+      <polygon class="cls-3" points="431.68 43.1 439.06 45.07 433.81 48.96 433.81 48.96 431.68 43.1"/>
+      <polygon class="cls-4" points="439.06 45.07 446.44 47.04 441.19 50.93 441.19 50.93 439.06 45.07"/>
+      <polygon class="cls-3" points="461.2 50.97 468.58 52.94 463.33 56.83 463.33 56.83 461.2 50.97"/>
+      <polygon class="cls-4" points="468.58 52.94 475.96 54.91 470.71 58.8 470.71 58.8 468.58 52.94"/>
+      <polygon class="cls-3" points="475.96 54.91 483.33 56.88 478.09 60.77 478.09 60.77 475.96 54.91"/>
+      <polygon class="cls-4" points="483.33 56.88 490.71 58.84 485.47 62.73 485.47 62.73 483.33 56.88"/>
+      <polygon class="cls-4" points="453.82 49.01 461.2 50.97 455.95 54.86 455.95 54.86 453.82 49.01"/>
+      <polygon class="cls-3" points="446.44 47.04 453.82 49.01 448.57 52.9 448.57 52.9 446.44 47.04"/>
+    </g>
+    <text class="cls-5" transform="translate(0 297.05)">HEDON</text>
+    <text class="cls-5" transform="translate(481 297.05)">STA</text>
+  </g>
+</svg>
