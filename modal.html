@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="da">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bistro Babushka</title>
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
+
+    <style>
+        html {
+            margin: 0 auto;
+        }
+
+        body {
+            text-align: center;
+        }
+
+        img {
+            width: 31.5vw;
+        }
+
+        h1 {
+            text-transform: uppercase;
+            font-family: walkway ultrabold;
+            font-size: 50px;
+        }
+
+        h2 {
+            text-transform: uppercase;
+            font-family: walkway ultrabold;
+            font-size: 30px;
+            color: #f05c71;
+        }
+
+        h3 {
+            text-transform: uppercase;
+            font-family: walkway ultrabold;
+        }
+
+        p {
+            font-family: walkway semibold;
+            font-size: 15px;
+        }
+
+        nav {
+            padding-bottom: 25px;
+        }
+
+        .logo {
+            width: 100vw;
+            padding-top: 15px;
+        }
+
+        .videre {
+            width: 35px;
+            height: 35px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .videre img {
+            width: 28px;
+            height: 28px;
+            margin-left: -4.5px;
+            margin-top: 1.5px;
+        }
+
+        .retContainer {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            padding-bottom: 60px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-rows: 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            padding-top: 60px;
+            padding-bottom: 60px;
+            background-color: #7ad6c9;
+        }
+
+        .item-a {
+            grid-column-start: 2;
+        }
+
+        .item-b {
+            grid-column-start: 3;
+        }
+
+        .ret {
+            margin-top: 25px;
+        }
+
+        .menu-item {
+            font-family: walkway semibold;
+            font-size: 20px;
+            border: none;
+            border-radius: 3px;
+            padding: 8px 8px;
+            transition-duration: 0.4s;
+        }
+
+        .menu-item:hover {
+            background-color: #7ad6c9;
+            color: white;
+        }
+
+        #modal {
+            background-color: rgba(0, 0, 0, .7);
+            width: 100vw;
+            height: 100vh;
+            position: fixed;
+            text-align: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: 1s;
+        }
+
+        #modal-content {
+            width: 70vw;
+            height: 70vh;
+            background-color: rgba(250, 250, 250, 1);
+            margin: auto;
+        }
+
+        #modal.vis {
+            opacity: 1;
+            pointer-events: all;
+            transition: 0.5s;
+        }
+
+        #modal img {
+            height: 60vh;
+            width: 30vw;
+        }
+
+        @media only screen and (max-width: 1229px) {
+            .retContainer {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media only screen and (max-width: 1229px) {
+            .grid {
+                grid-template-rows: 1fr 1fr;
+                grid-template-columns: 1fr;
+            }
+
+            .item-a {
+                grid-row-start: 1;
+                grid-column-start: 1;
+            }
+
+            .item-b {
+                grid-row-start: 2;
+                grid-column-start: 1;
+            }
+        }
+
+        @media only screen and (max-width: 830px) {
+            .ret img {
+                width: 100%
+            }
+
+            .retContainer {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media only screen and (max-width: 425px) {
+            .ret img {
+                width: 100%
+            }
+
+            .retContainer {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        ;
+    </style>
+
+</head>
+
+<body>
+
+    <img class="logo" src="Logo/Logo%20-%20endeligt.svg" alt="logo">
+
+    <button class="videre"><img src="images/arrow-down-empty-circle_500x500.png"><a href="index.html#forside"></a>
+    </button>
+
+    <section id="modal">
+        <button>Luk</button>
+        <div id="modal-content">
+            <h2 class="modal-navn"></h2>
+            <img class="modal-billede" src="" alt="">
+        </div>
+    </section>
+
+    <header>
+        <h1 id="forside">Menu</h1>
+        <nav>
+            <button class="menu-item" data-kategori="tacos">Tacos</button>
+            <button class="menu-item" data-kategori="quesadillas">Quesadillas</button>
+            <button class="menu-item" data-kategori="sides">Sideorders</button>
+            <button class="menu-item" data-kategori="drinks">Drikkevarer</button>
+        </nav>
+    </header>
+
+    <main class="retContainer"></main>
+
+    <template class="retTemplate">
+        <article class="ret">
+            <h2 class="overskrift" data-navn></h2>
+            <img class="billede" data-billede src="" alt="">
+            <p class="beskrivelse" data-beskrivelse></p>
+            <p>Pris: <span class="pris" data-pris></span> kr.</p>
+        </article>
+    </template>
+
+    <script>
+        let modal = document.querySelector("#modal");
+
+        let dest = document.querySelector(".retContainer"),
+            retter, menuFilter = "alle";
+        document.addEventListener("DOMContentLoaded", hentJson);
+
+        async function hentJson() {
+            let jsonData = await fetch("menu.json");
+            retter = await jsonData.json();
+            visRetter();
+        }
+
+        document.querySelectorAll(".menu-item").forEach(knap => {
+            knap.addEventListener("click", filtrering)
+        });
+
+        function filtrering() {
+            dest.textContent = "";
+            menuFilter = this.getAttribute("data-kategori");
+            visRetter();
+        }
+
+        function visRetter() {
+            let temp = document.querySelector(".retTemplate");
+            let dest = document.querySelector(".retContainer");
+
+            document.querySelector("header h1").textContent = menuFilter;
+
+            retter.forEach(ret => {
+                if (ret.kategori == menuFilter || menuFilter == "alle") {
+                    let klon = temp.cloneNode(true).content;
+
+                    klon.querySelector("[data-navn]").textContent = ret.navn;
+
+                    klon.querySelector("[data-billede]").src = "images/small/" + ret.billede + ".jpg";
+
+                    klon.querySelector("[data-billede]").addEventListener("click", () => {
+                        visModal(ret);
+                    });
+
+                    klon.querySelector("[data-beskrivelse]").textContent = ret.beskrivelse;
+
+                    klon.querySelector("[data-pris]").textContent = ret.pris;
+                    dest.appendChild(klon);
+                }
+            });
+        }
+
+        function visModal(retter) {
+            modal.classList.add("vis");
+            modal.querySelector(".modal-navn").textContent = retter.navn;
+            modal.querySelector(".modal-billede").src = "images/small/" + retter.billede + ".jpg";
+            modal.querySelector(".modal-billede").alt = "Foto af" + retter.navn;
+
+            modal.querySelector("button").addEventListener("click", skjulModal);
+        }
+
+        function skjulModal() {
+            modal.classList.remove("vis");
+        }
+    </script>
+
+    <footer>
+        <div class="grid">
+            <div class="item item-a">
+                <h3>Adresse:</h3>
+                <p>Slagterboderne 8<br>
+                    1716 København V</p>
+            </div>
+            <div class="item item-b">
+                <h3>Åbningstider:</h3>
+                <p>Søndag - torsdag: 11:00 - 20:00<br>
+                    Fredag - lørdag: 11:00 - 22:00</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>
