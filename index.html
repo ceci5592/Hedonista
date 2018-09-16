@@ -16,6 +16,9 @@
             text-align: center;
         }
 
+        img {
+            width: 31.5vw;
+        }
 
         h1 {
             text-transform: uppercase;
@@ -30,13 +33,18 @@
             color: #f05c71;
         }
 
+        h3 {
+            text-transform: uppercase;
+            font-family: walkway ultrabold;
+        }
+
         p {
             font-family: walkway semibold;
             font-size: 15px;
         }
 
         nav {
-            padding-bottom: 30px;
+            padding-bottom: 25px;
         }
 
         .logo {
@@ -61,11 +69,64 @@
         .retContainer {
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
+            padding-bottom: 60px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-rows: 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            padding-top: 60px;
+            padding-bottom: 60px;
+            background-color: #7ad6c9;
+        }
+
+        .item-a {
+            grid-column-start: 2;
+        }
+
+        .item-b {
+            grid-column-start: 3;
+        }
+
+        .ret {
+            margin-top: 25px;
+        }
+
+        .menu-item {
+            font-family: walkway semibold;
+            font-size: 20px;
+            border: none;
+            border-radius: 3px;
+            padding: 8px 8px;
+            transition-duration: 0.4s;
+        }
+
+        .menu-item:hover {
+            background-color: #7ad6c9;
+            color: white;
         }
 
         @media only screen and (max-width: 1229px) {
             .retContainer {
                 grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media only screen and (max-width: 1229px) {
+            .grid {
+                grid-template-rows: 1fr 1fr;
+                grid-template-columns: 1fr;
+            }
+
+            .item-a {
+                grid-row-start: 1;
+                grid-column-start: 1;
+            }
+
+            .item-b {
+                grid-row-start: 2;
+                grid-column-start: 1;
             }
         }
 
@@ -128,10 +189,6 @@
 <script>
     let dest = document.querySelector(".retContainer"),
         retter, menuFilter = "alle";
-
-
-
-
     document.addEventListener("DOMContentLoaded", hentJson);
 
     async function hentJson() {
@@ -180,12 +237,12 @@
 <footer>
     <div class="grid">
         <div class="item item-a">
-            <h4>Adresse:</h4>
+            <h3>Adresse:</h3>
             <p>Slagterboderne 8<br>
                 1716 København V</p>
         </div>
         <div class="item item-b">
-            <h4>Åbningstider:</h4>
+            <h3>Åbningstider:</h3>
             <p>Søndag - torsdag: 11:00 - 20:00<br>
                 Fredag - lørdag: 11:00 - 22:00</p>
         </div>
