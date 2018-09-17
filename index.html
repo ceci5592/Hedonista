@@ -17,7 +17,9 @@
         }
 
         img {
-            width: 31.5vw;
+            width: 28vw;
+            padding-left: 20px;
+            padding-right: 20px;
         }
 
         h1 {
@@ -38,9 +40,16 @@
             font-family: walkway ultrabold;
         }
 
+        h4 {
+            font-family: walkway semibold;
+            font-size: 19px;
+        }
+
         p {
             font-family: walkway semibold;
-            font-size: 15px;
+            font-size: 18px;
+            padding-left: 20px;
+            padding-right: 20px;
         }
 
         nav {
@@ -151,7 +160,6 @@
         }
 
         ;
-
     </style>
 
 </head>
@@ -166,6 +174,8 @@
     <header>
         <h1 id="forside">Menu</h1>
         <nav>
+            <button class="menu-item" data-kategori="forside">Forside</button>
+            <button class="menu-item" data-kategori="alle">Alle retter</button>
             <button class="menu-item" data-kategori="tacos">Tacos</button>
             <button class="menu-item" data-kategori="quesadillas">Quesadillas</button>
             <button class="menu-item" data-kategori="sides">Sideorders</button>
@@ -173,78 +183,84 @@
         </nav>
     </header>
 
-</body>
+    <section class="forside">
+        <h4>Hedonista åbnede dørene i 2018 på Vesterbro i København. Restauranten og dets univers er skabt af Maria Flores, <br>der er født i Mexico, men opvokset på Nørrebro i København. Hun ønskede at kreere et sted, <br> hvor to vidt forskellige kulturer kunne mødes i harmoni. Hendes kærlighed til tacos, stærk mad og kraftige farver præger menuen, <br> mens hendes fascination af den nordiske minimalistiske indretningsstil præger restaurantens interiør.<br>
+            <br>
+            På Hedonista er der plads til, at modsætninger kan mødes.</h4>
+    </section>
 
-<main class="retContainer"></main>
+    <main class="retContainer"></main>
 
-<template class="retTemplate">
-    <article class="ret">
-        <h2 class="overskrift" data-navn></h2>
-        <img class="billede" data-billede src="" alt="">
-        <p class="beskrivelse" data-beskrivelse></p>
-        <p>Pris: <span class="pris" data-pris></span> kr.</p>
-    </article>
-</template>
+    <template class="retTemplate">
+        <article class="ret">
+            <h2 class="overskrift" data-navn></h2>
+            <img class="billede" data-billede src="" alt="">
+            <p class="beskrivelse" data-beskrivelse></p>
+            <p>Pris: <span class="pris" data-pris></span> kr.</p>
+        </article>
+    </template>
 
-<script>
-    let dest = document.querySelector(".retContainer"),
-        retter, menuFilter = "alle";
-    document.addEventListener("DOMContentLoaded", hentJson);
+    <footer>
+        <div class="grid">
+            <div class="item item-a">
+                <h3>Adresse:</h3>
+                <p>Slagterboderne 8<br>
+                    1716 København V</p>
+            </div>
+            <div class="item item-b">
+                <h3>Åbningstider:</h3>
+                <p>Søndag - torsdag: 11:00 - 20:00<br>
+                    Fredag - lørdag: 11:00 - 22:00</p>
+            </div>
+        </div>
+    </footer>
 
-    async function hentJson() {
-        let jsonData = await fetch("menu.json");
-        retter = await jsonData.json();
-        visRetter();
-    }
+    <script>
+        let dest = document.querySelector(".retContainer"),
+            retter, menuFilter = "forside";
+        document.addEventListener("DOMContentLoaded", hentJson);
 
-    document.querySelectorAll(".menu-item").forEach(knap => {
-        knap.addEventListener("click", filtrering)
-    });
+        async function hentJson() {
+            let jsonData = await fetch("menu.json");
+            retter = await jsonData.json();
+            visRetter();
+        }
 
-    function filtrering() {
-        dest.textContent = "";
-        menuFilter = this.getAttribute("data-kategori");
-        visRetter();
-    }
-
-    function visRetter() {
-        let temp = document.querySelector(".retTemplate");
-        let dest = document.querySelector(".retContainer");
-
-        document.querySelector("header h1").textContent = menuFilter;
-
-        retter.forEach(ret => {
-            if (ret.kategori == menuFilter || menuFilter == "alle") {
-                let klon = temp.cloneNode(true).content;
-
-                klon.querySelector("[data-navn]").textContent = ret.navn;
-
-                klon.querySelector("[data-billede]").src = "images/small/" + ret.billede + ".jpg";
-
-                klon.querySelector("[data-billede]").addEventListener("click", () => {
-                    window.location.href = "single.html?id=" + ret.id;
-                })
-
-                klon.querySelector("[data-beskrivelse]").textContent = ret.beskrivelse;
-                klon.querySelector("[data-pris]").textContent = ret.pris;
-                dest.appendChild(klon);
-            }
+        document.querySelectorAll(".menu-item").forEach(knap => {
+            knap.addEventListener("click", filtrering)
         });
-    }
 
-</script>
+        function filtrering() {
+            dest.textContent = "";
+            menuFilter = this.getAttribute("data-kategori");
+            visRetter();
+        }
 
-<footer>
-    <div class="grid">
-        <div class="item item-a">
-            <h3>Adresse:</h3>
-            <p>Slagterboderne 8<br>
-                1716 København V</p>
-        </div>
-        <div class="item item-b">
-            <h3>Åbningstider:</h3>
-            <p>Søndag - torsdag: 11:00 - 20:00<br>
-                Fredag - lørdag: 11:00 - 22:00</p>
-        </div>
-    </div>
-</footer>
+        function visRetter() {
+            let temp = document.querySelector(".retTemplate");
+            let dest = document.querySelector(".retContainer");
+
+            document.querySelector("header h1").textContent = menuFilter;
+
+            retter.forEach(ret => {
+                if (ret.kategori == menuFilter || menuFilter == "alle") {
+                    let klon = temp.cloneNode(true).content;
+
+                    klon.querySelector("[data-navn]").textContent = ret.navn;
+
+                    klon.querySelector("[data-billede]").src = "images/small/" + ret.billede + ".jpg";
+
+                    klon.querySelector("[data-billede]").addEventListener("click", () => {
+                        window.location.href = "single.html?id=" + ret.id;
+                    })
+
+                    klon.querySelector("[data-beskrivelse]").textContent = ret.beskrivelse;
+                    klon.querySelector("[data-pris]").textContent = ret.pris;
+                    dest.appendChild(klon);
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
