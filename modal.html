@@ -16,7 +16,7 @@
             text-align: center;
         }
 
-        img {
+        .billede {
             width: 28vw;
             padding-left: 20px;
             padding-right: 20px;
@@ -180,11 +180,19 @@
 
         @media only screen and (max-width: 425px) {
             .ret img {
-                width: 100%
+                width: 100%;
             }
 
             .retContainer {
                 grid-template-columns: 1fr;
+            }
+        }
+
+        @media only screen and (max-width: 425px) {
+            .billede {
+                width: 100%;
+                padding-left: 0px;
+                padding-right: 0px;
             }
         }
 
@@ -199,6 +207,14 @@
 
     <button class="videre"><img src="images/arrow-down-empty-circle_500x500.png"><a href="index.html#forside"></a>
     </button>
+
+    <section id="modal">
+        <button>Luk</button>
+        <div id="modal-content">
+            <h2 class="modal-navn"></h2>
+            <img class="modal-billede" src="" alt="">
+        </div>
+    </section>
 
     <header>
         <h1 id="forside">Menu</h1>
@@ -228,21 +244,6 @@
             <p>Pris: <span class="pris" data-pris></span> kr.</p>
         </article>
     </template>
-
-    <footer>
-        <div class="grid">
-            <div class="item item-a">
-                <h3>Adresse:</h3>
-                <p>Slagterboderne 8<br>
-                    1716 København V</p>
-            </div>
-            <div class="item item-b">
-                <h3>Åbningstider:</h3>
-                <p>Søndag - torsdag: 11:00 - 20:00<br>
-                    Fredag - lørdag: 11:00 - 22:00</p>
-            </div>
-        </div>
-    </footer>
 
     <script>
         let modal = document.querySelector("#modal");
@@ -306,6 +307,21 @@
             modal.classList.remove("vis");
         }
     </script>
+
+    <footer>
+        <div class="grid">
+            <div class="item item-a">
+                <h3>Adresse:</h3>
+                <p>Slagterboderne 8<br>
+                    1716 København V</p>
+            </div>
+            <div class="item item-b">
+                <h3>Åbningstider:</h3>
+                <p>Søndag - torsdag: 11:00 - 20:00<br>
+                    Fredag - lørdag: 11:00 - 22:00</p>
+            </div>
+        </div>
+    </footer>
 
 </body>
 
