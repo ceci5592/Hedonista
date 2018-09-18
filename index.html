@@ -176,6 +176,18 @@
             }
         }
 
+        @media only screen and (max-width: 425px) {
+            .forside {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media only screen and (max-width: 425px) {
+            .tekst {
+                grid-column-start: 1;
+            }
+        }
+
         ;
     </style>
 
@@ -190,7 +202,7 @@
     <header>
         <h1 id="forside">Menu</h1>
         <nav>
-            <button class="menu-item" data-kategori=" ">Forside</button>
+            <button class="menu-item" data-kategori="introduktion">Forside</button>
             <button class="menu-item" data-kategori="alle">Alle retter</button>
             <button class="menu-item" data-kategori="tacos">Tacos</button>
             <button class="menu-item" data-kategori="quesadillas">Quesadillas</button>
@@ -237,7 +249,7 @@
 
     <script>
         let dest = document.querySelector(".retContainer"),
-            retter, menuFilter = " ";
+            retter, menuFilter = "introduktion";
         document.addEventListener("DOMContentLoaded", hentJson);
 
         async function hentJson() {
@@ -261,7 +273,7 @@
             let dest = document.querySelector(".retContainer");
 
             document.querySelector("header h1").textContent = menuFilter;
-            if (menuFilter == " ") {
+            if (menuFilter == "introduktion") {
                 document.querySelector(".tekst").style.display = "block";
             } else {
                 document.querySelector(".tekst").style.display = "none";
