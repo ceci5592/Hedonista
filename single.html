@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html lang="da">
 
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hedonista</title>
+    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 
     <style>
         html {
@@ -116,8 +116,6 @@
             color: white;
         }
 
-
-
         @media only screen and (max-width: 1229px) {
             .retContainer {
                 grid-template-columns: 1fr 1fr;
@@ -172,7 +170,6 @@
         ;
 
     </style>
-
 </head>
 
 <body>
@@ -211,24 +208,12 @@
         </article>
     </template>
 
-    <footer>
-        <div class="grid">
-            <div class="item item-a">
-                <h3>Adresse:</h3>
-                <p>Slagterboderne 8<br>
-                    1716 København V</p>
-            </div>
-            <div class="item item-b">
-                <h3>Åbningstider:</h3>
-                <p>Søndag - torsdag: 11:00 - 20:00<br>
-                    Fredag - lørdag: 11:00 - 22:00</p>
-            </div>
-        </div>
-    </footer>
-
     <script>
+        let urlParams = new URLSearchParams(window.location.search);
+        let id = urlParams.get("id");
+
         let dest = document.querySelector(".retContainer"),
-            retter, menuFilter = "forside";
+            retter, menuFilter = "alle";
         document.addEventListener("DOMContentLoaded", hentJson);
 
         async function hentJson() {
@@ -248,31 +233,36 @@
         }
 
         function visRetter() {
-            let temp = document.querySelector(".retTemplate");
             let dest = document.querySelector(".retContainer");
-
             document.querySelector("header h1").textContent = menuFilter;
-
             retter.forEach(ret => {
-                if (ret.kategori == menuFilter || menuFilter == "alle") {
-                    let klon = temp.cloneNode(true).content;
-
-                    klon.querySelector("[data-navn]").textContent = ret.navn;
-
-                    klon.querySelector("[data-billede]").src = "images/small/" + ret.billede + ".jpg";
-
-                    klon.querySelector("[data-billede]").addEventListener("click", () => {
-                        window.location.href = "single.html?id=" + ret.id;
-                    })
-
+                if (ret.id == id) {
+                    dest.querySelector("[data-navn]").textContent = ret.navn;
+                    dest.querySelector("[data-billede]").src = "images/small/" + ret.billede + ".jpg";
                     klon.querySelector("[data-beskrivelse]").textContent = ret.beskrivelse;
-                    klon.querySelector("[data-pris]").textContent = ret.pris;
-                    dest.appendChild(klon);
+                    dest.querySelector("[data-pris]").textContent = ret.pris;
+
                 }
             });
         }
 
     </script>
+
+    <footer>
+        <div class="grid">
+            <div class="item item-a">
+                <h3>Adresse:</h3>
+                <p>Slagterboderne 8<br>
+                    1716 København V</p>
+            </div>
+            <div class="item item-b">
+                <h3>Åbningstider:</h3>
+                <p>Søndag - torsdag: 11:00 - 20:00<br>
+                    Fredag - lørdag: 11:00 - 22:00</p>
+            </div>
+        </div>
+    </footer>
+
 
 </body>
 
