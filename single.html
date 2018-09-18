@@ -16,7 +16,7 @@
         }
 
         img {
-            width: 28vw;
+            width: 40vw;
             padding-left: 20px;
             padding-right: 20px;
         }
@@ -172,6 +172,7 @@
         }
 
         ;
+
     </style>
 </head>
 
@@ -219,7 +220,7 @@
 
         function visRetter() {
             let dest = document.querySelector(".retContainer");
-            document.querySelector("header h1").textContent = menuFilter;
+            document.querySelector("header h1").textContent = urlParams.get("kategori");
             retter.forEach(ret => {
                 if (ret.id == id) {
                     dest.querySelector("[data-navn]").textContent = ret.navn;
@@ -230,6 +231,7 @@
                 }
             });
         }
+
     </script>
 
     <footer>
