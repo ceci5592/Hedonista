@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hedonista</title>
-    <link href="https://fonts.googleapis.com/css?family=Titillium+Web" rel="stylesheet">
 
     <style>
         html {
@@ -56,9 +55,32 @@
             padding-bottom: 25px;
         }
 
+        /*a href {
+            cursor: pointer;
+        }
+
+        .codeword {
+            text-decoration-line: none;
+            font-family: walkway ultrabold;
+            font-size: 20px;
+            color: #f05c71;
+        }
+
+        .forside {
+            display: grid;
+            grid-template-rows: 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .tekst {
+            grid-column-start: 2;
+            grid-column-end: 4;
+        }*/
+
         .logo {
-            width: 100vw;
+            width: 95vw;
             padding-top: 15px;
+            padding-bottom: 25px;
         }
 
         .videre {
@@ -79,6 +101,10 @@
             display: grid;
             grid-template-columns: 1fr 1fr 1fr;
             padding-bottom: 60px;
+        }
+
+        .singleContainer {
+            grid-column-start: 2;
         }
 
         .grid {
@@ -174,10 +200,9 @@
 
 <body>
 
-    <img class="logo" src="Logo/Logo%20-%20endeligt.svg" alt="logo">
+    <!--<img class="logo" src="Logo/Logo%20-%20endeligt.svg" alt="logo">
 
-    <button class="videre"><img src="images/arrow-down-empty-circle_500x500.png"><a href="index.html#forside"></a>
-    </button>
+    <a href="#codeword" class="codeword">VELKOMMEN</a>-->
 
     <header>
         <h1 id="forside">Menu</h1>
@@ -191,22 +216,26 @@
         </nav>
     </header>
 
-    <section class="forside">
-        <h4>Hedonista åbnede dørene i 2018 på Vesterbro i København. Restauranten og dets univers er skabt af Maria Flores, <br>der er født i Mexico, men opvokset på Nørrebro i København. Hun ønskede at kreere et sted, <br> hvor to vidt forskellige kulturer kunne mødes i harmoni. Hendes kærlighed til tacos, stærk mad og kraftige farver præger menuen, <br> mens hendes fascination af den nordiske minimalistiske indretningsstil præger restaurantens interiør.<br>
+    <!--<a name="codeword"></a>
+
+<section class="forside">
+    <div class="tekst">
+        <h4>Hedonista åbnede dørene i 2018 på Vesterbro i København. Restauranten og dets univers er skabt af Maria Flores, der er født i Mexico, men opvokset på Nørrebro i København. Hun ønskede at kreere et sted, hvor to vidt forskellige kulturer kunne mødes i harmoni. Hendes kærlighed til tacos, stærk mad og kraftige farver præger menuen, mens hendes fascination af den nordiske minimalistiske indretningsstil præger restaurantens interiør.<br>
             <br>
             På Hedonista er der plads til, at modsætninger kan mødes.</h4>
-    </section>
+    </div>
+</section>-->
 
-    <main class="retContainer"></main>
-
-    <template class="retTemplate">
-        <article class="ret">
-            <h2 class="overskrift" data-navn></h2>
-            <img class="billede" data-billede src="" alt="">
-            <p class="beskrivelse" data-beskrivelse></p>
-            <p>Pris: <span class="pris" data-pris></span> kr.</p>
-        </article>
-    </template>
+    <main class="retContainer">
+        <section class="singleContainer">
+            <article class="ret">
+                <h2 class="overskrift" data-navn></h2>
+                <img class="billede" data-billede src="" alt="">
+                <p class="beskrivelse" data-beskrivelse></p>
+                <p>Pris: <span class="pris" data-pris></span> kr.</p>
+            </article>
+        </section>
+    </main>
 
     <script>
         let urlParams = new URLSearchParams(window.location.search);
@@ -239,7 +268,7 @@
                 if (ret.id == id) {
                     dest.querySelector("[data-navn]").textContent = ret.navn;
                     dest.querySelector("[data-billede]").src = "images/small/" + ret.billede + ".jpg";
-                    klon.querySelector("[data-beskrivelse]").textContent = ret.beskrivelse;
+                    dest.querySelector("[data-beskrivelse]").textContent = ret.beskrivelse;
                     dest.querySelector("[data-pris]").textContent = ret.pris;
 
                 }
@@ -262,7 +291,6 @@
             </div>
         </div>
     </footer>
-
 
 </body>
 

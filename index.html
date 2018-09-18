@@ -56,23 +56,32 @@
             padding-bottom: 25px;
         }
 
-        .logo {
-            width: 100vw;
-            padding-top: 15px;
-        }
-
-        .videre {
-            width: 35px;
-            height: 35px;
-            border: none;
+        a href {
             cursor: pointer;
         }
 
-        .videre img {
-            width: 28px;
-            height: 28px;
-            margin-left: -4.5px;
-            margin-top: 1.5px;
+        .codeword {
+            text-decoration-line: none;
+            font-family: walkway ultrabold;
+            font-size: 20px;
+            color: #f05c71;
+        }
+
+        .forside {
+            display: grid;
+            grid-template-rows: 1fr;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+        }
+
+        .tekst {
+            grid-column-start: 2;
+            grid-column-end: 4;
+        }
+
+        .logo {
+            width: 95vw;
+            padding-top: 15px;
+            padding-bottom: 25px;
         }
 
         .retContainer {
@@ -115,8 +124,6 @@
             background-color: #7ad6c9;
             color: white;
         }
-
-
 
         @media only screen and (max-width: 1229px) {
             .retContainer {
@@ -170,7 +177,6 @@
         }
 
         ;
-
     </style>
 
 </head>
@@ -179,8 +185,7 @@
 
     <img class="logo" src="Logo/Logo%20-%20endeligt.svg" alt="logo">
 
-    <button class="videre"><img src="images/arrow-down-empty-circle_500x500.png"><a href="index.html#forside"></a>
-    </button>
+    <a href="#codeword" class="codeword">VELKOMMEN</a>
 
     <header>
         <h1 id="forside">Menu</h1>
@@ -194,10 +199,14 @@
         </nav>
     </header>
 
+    <a name="codeword"></a>
+
     <section class="forside">
-        <h4>Hedonista åbnede dørene i 2018 på Vesterbro i København. Restauranten og dets univers er skabt af Maria Flores, <br>der er født i Mexico, men opvokset på Nørrebro i København. Hun ønskede at kreere et sted, <br> hvor to vidt forskellige kulturer kunne mødes i harmoni. Hendes kærlighed til tacos, stærk mad og kraftige farver præger menuen, <br> mens hendes fascination af den nordiske minimalistiske indretningsstil præger restaurantens interiør.<br>
-            <br>
-            På Hedonista er der plads til, at modsætninger kan mødes.</h4>
+        <div class="tekst">
+            <h4>Hedonista åbnede dørene i 2018 på Vesterbro i København. Restauranten og dets univers er skabt af Maria Flores, der er født i Mexico, men opvokset på Nørrebro i København. Hun ønskede at kreere et sted, hvor to vidt forskellige kulturer kunne mødes i harmoni. Hendes kærlighed til tacos, stærk mad og kraftige farver præger menuen, mens hendes fascination af den nordiske minimalistiske indretningsstil præger restaurantens interiør.<br>
+                <br>
+                På Hedonista er der plads til, at modsætninger kan mødes.</h4>
+        </div>
     </section>
 
     <main class="retContainer"></main>
@@ -228,7 +237,7 @@
 
     <script>
         let dest = document.querySelector(".retContainer"),
-            retter, menuFilter = "forside";
+            retter, menuFilter = "alle";
         document.addEventListener("DOMContentLoaded", hentJson);
 
         async function hentJson() {
@@ -271,7 +280,6 @@
                 }
             });
         }
-
     </script>
 
 </body>
