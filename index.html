@@ -197,10 +197,13 @@
 
     <img class="logo" src="Logo/Logo%20-%20endeligt.svg" alt="logo">
 
+    <!-- Ord der linker til anden sektion af samme side -->
     <a href="#codeword" class="codeword">VELKOMMEN</a>
 
     <header>
         <h1 id="forside">Menu</h1>
+
+        <!-- Menu med knapper til filtrering på diverse retter -->
         <nav>
             <button class="menu-item" data-kategori="introduktion">Forside</button>
             <button class="menu-item" data-kategori="alle">Alle retter</button>
@@ -211,6 +214,7 @@
         </nav>
     </header>
 
+    <!-- Den sektion der bliver linket til -->
     <a name="codeword"></a>
 
     <section class="forside">
@@ -221,13 +225,25 @@
         </div>
     </section>
 
+    <!-- Data-container til visning af alle retter -->
     <main class="retContainer"></main>
 
+    <!-- Template til visning af de enkelte retter -->
     <template class="retTemplate">
+
+        <!-- Article er beregnet til indholdet -->
         <article class="ret">
+
+            <!-- Overskrift til rettens navn -->
             <h2 class="overskrift" data-navn></h2>
+
+            <!-- Tomt img-tag til rettens billede -->
             <img class="billede" data-billede src="" alt="">
+
+            <!-- Tomt p-tag til rettens beskrivelse -->
             <p class="beskrivelse" data-beskrivelse></p>
+
+            <!-- Delvist tomt p-tag til rettens pris -->
             <p>Pris: <span class="pris" data-pris></span> kr.</p>
         </article>
     </template>
@@ -248,10 +264,16 @@
     </footer>
 
     <script>
+        // dest er det DOM-element, som retterne skal vises i
         let dest = document.querySelector(".retContainer"),
+            // Variabel til indlæsning af retter, og variabel der viser hvilken værdi, der filtreres på
             retter, menuFilter = "introduktion";
+        // Start først når DOM-indholdet er loaded
         document.addEventListener("DOMContentLoaded", hentJson);
 
+        // Funktionen indlæser data fra json-filen og
+        // lægger ret-objekterne i ret-array.
+        // Kalder visRetter()
         async function hentJson() {
             let jsonData = await fetch("menu.json");
             retter = await jsonData.json();
@@ -262,12 +284,15 @@
             knap.addEventListener("click", filtrering)
         });
 
+        // Funktionen henter den data-værdi, der ligger
+        // på menu-knappen, og sætter variablen menuFilter
         function filtrering() {
             dest.textContent = "";
             menuFilter = this.getAttribute("data-kategori");
             visRetter();
         }
 
+        // Funktionen visRetter udføres først, når DOM-indholdet // er indlæst. Funktionen indlæser data fra json-filen, og // sætter eventhandlers på menu-knapperne
         function visRetter() {
             let temp = document.querySelector(".retTemplate");
             let dest = document.querySelector(".retContainer");
